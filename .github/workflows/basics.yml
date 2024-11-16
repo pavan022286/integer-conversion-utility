@@ -1,0 +1,44 @@
+name: CI - test convert utility		
+
+on:							
+  push:
+    branches: [ "main" ]			
+
+jobs:
+  build:						
+    runs-on: ubuntu-latest			
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y gcc gcov lcov
+
+
+      - name: Build Release Executable
+        run: make
+      - name: Upload Convert Executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: convert
+          path: ./convert
+
+
+      - name: Build Testing Executable with Coverage
+        run: make ctest
+
+
+      - name: Run Tests
+        run: ./test_script > test_results.txt
+
+
+      - name: Generate Coverage Reports
+        run: gcov -o . *.c ; lcov --capture --directory . --output-file coverage.info ; genhtml coverage.info --output-directory coverage
+
+
+      - name: Upload Test Results and Coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test Results and Coverage
+          path: |
+          test_results.txt
+          *.gcov
+          coverage

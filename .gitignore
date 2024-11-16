@@ -1,0 +1,6 @@
+convert
+ctest
+*.gcda
+*.gcno
+*.gcov
+test_results.txt
