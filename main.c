@@ -1,5 +1,5 @@
 /* Author: Pavan Patel
- * Program Info: Main funciton that calls convert and analyzes input
+ * Program Info: Main function that calls convert() and analyzes input
  *
  * */
 #include <stdio.h>
@@ -11,11 +11,9 @@
 int main(int argc, char *argv[]) {
     int base = DEFAULT_BASE;
     long start = 0, finish = 0;
-    
-    //Analyze input
+
     if (parse_args(argc, argv, &base, &start, &finish) != 0) {
-	fprintf(stderr,"Usage: convert [-b BASE] [-r START FINISH]\n1 < BASE < 37\nSTART and FINISH are long integers");
-	return -1; //Show error 
+	return 1; //returns error
     }
     // If range given, convert for range
     if (start != 0 || finish != 0) {
@@ -38,11 +36,11 @@ int main(int argc, char *argv[]) {
 	    if (check==EOF) {//ctrl + d entered, break and exit
 		break;
 	    }
-	    if (check!=1) { // if scan does not scan long int, then print error
+	    else if (check!=1) { // if scan does not scan long int, then print error
 		fprintf(stderr,"Error: Non-long-int token encountered\n");
-		return -1;
+		return 1;
 	    }
-	    if (number==0) { //if number is 0, print 0
+	    else if (number==0) { //if number is 0, print 0
 	    	putchar('0');
 		printf("\n");
 	    }

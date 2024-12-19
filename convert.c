@@ -1,3 +1,6 @@
+/* Author: Pavan Patel
+ * Program Info: Convert function that converts the inputted number to its equivalent for inputted base
+ **/
 #include <stdio.h>
 #include "convert.h"
 
