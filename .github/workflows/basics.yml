@@ -39,7 +39,7 @@ jobs:
         with:
           name: Test Results and Coverage
           path: |
-          test_results.txt
-          convert.c.gcov
-          main.c.gcov
-          utils.c.gcov
+            test_results.txt
+            convert.c.gcov
+            main.c.gcov
+            utils.c.gcov
