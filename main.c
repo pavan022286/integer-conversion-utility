@@ -1,5 +1,5 @@
 /* Author: Pavan Patel
- * Program Info: Main function that calls convert() and analyzes input
+ * Program Info: Main function that calls convert() and parse_args() to analyze input
  *
  * */
 #include <stdio.h>
@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     long start = 0, finish = 0;
 
     if (parse_args(argc, argv, &base, &start, &finish) != 0) {
-	return 1; //returns error
+	return 1; //returns error if no success
     }
     // If range given, convert for range
     if (start != 0 || finish != 0) {

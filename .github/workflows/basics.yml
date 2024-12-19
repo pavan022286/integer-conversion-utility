@@ -9,12 +9,10 @@ jobs:
     runs-on: ubuntu-latest			
     steps:
       - uses: actions/checkout@v4
-      - name: Install Dependencies
-        run: sudo apt-get update && sudo apt-get install -y gcc gcov lcov
 
+      - name: Build Convert
+        run: gcc -o convert main.c convert.c utils.c
 
-      - name: Build Release Executable
-        run: make
       - name: Upload Convert Executable
         uses: actions/upload-artifact@v4
         with:
@@ -31,14 +29,17 @@ jobs:
 
 
       - name: Generate Coverage Reports
-        run: gcov -o . *.c ; lcov --capture --directory . --output-file coverage.info ; genhtml coverage.info --output-directory coverage
+        run: gcov ctest-convert.c; gcov ctest-main.c; gcov ctest-utils.c
 
 
       - name: Upload Test Results and Coverage
+        if: ${{ always()}}
+        
         uses: actions/upload-artifact@v4
         with:
           name: Test Results and Coverage
           path: |
           test_results.txt
-          *.gcov
-          coverage
+          convert.c.gcov
+          main.c.gcov
+          utils.c.gcov
