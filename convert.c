@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "convert.h"
 
-// Function that converts number to base recursively
+// Function that converts number to base recursively, input is long number and int base, while return is void
 void convert(long number, int base) {
     if (number == 0) {
         return;  //Stops when number reaches 0

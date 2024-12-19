@@ -6,9 +6,9 @@
 #include "convert.h"
 #include "utils.h"
 
-#define DEFAULT_BASE 16  // sets the default base to hexadecimal
+#define DEFAULT_BASE 16  // global constant, sets the default base to hexadecimal
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) { //takes arguments and argument vectors as inputs. Purpose: Parses, as well as converts. Returns 0 or 1, depending on success or error
     int base = DEFAULT_BASE;
     long start = 0, finish = 0;
 
