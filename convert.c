@@ -5,6 +5,10 @@
 void convert(long number, int base) {
     if (number == 0) {
         return;  //Stops when number reaches 0
+    }	
+    if (number < 0) {
+        putchar('-'); // Print the negative sign
+        number = -number; // Converts to positive
     }
 
     //continue for next digit
